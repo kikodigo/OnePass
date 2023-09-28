@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
+using OnePass.Domain.Data;
 using OnePass.Repository.Interfaces;
 
 namespace OnePass.Repository
@@ -21,6 +23,17 @@ namespace OnePass.Repository
             _mySqlConnection.Open();
             Console.WriteLine(_mySqlConnection.State.ToString());
             _logger.LogInformation($"Log gerado via MS Logging {_mySqlConnection.State.ToString()}");
+        }
+
+        public async Task<EstoqueItem> GetItem(int itemId)
+        {
+            _mySqlConnection.Open();
+
+            var estoqueItem = _mySqlConnection.QueryFirstOrDefault<EstoqueItem>("SELECT * FROM estoque WHERE id = @id", new { id = itemId });
+
+            _mySqlConnection.Close();
+
+            return estoqueItem;
         }
 
         //MySqlConnection connection = new MySqlConnection(connectionString);

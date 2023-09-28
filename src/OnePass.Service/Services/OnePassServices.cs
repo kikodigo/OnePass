@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OnePass.Core.Services.Interface;
+using OnePass.Domain.Data;
 using OnePass.Repository.Interfaces;
 
 namespace OnePass.Core.Services
@@ -20,6 +21,13 @@ namespace OnePass.Core.Services
         public async Task connectDB()
         {
             _onePassRepository.conectDb();
+        }
+
+        public async Task<EstoqueItem> GetItemById(int idItem)
+        {
+            var item = await _onePassRepository.GetItem(idItem);
+
+            return item;
         }
     }
 }
