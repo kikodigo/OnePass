@@ -1,24 +1,26 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 using OnePass.Repository.Interfaces;
 
 namespace OnePass.Repository
 {
-    public class OnePassRepository: IOnePassRepository
+    public class OnePassRepository : IOnePassRepository
     {
-
+        private readonly ILogger<OnePassRepository> _logger;
         private readonly MySqlConnection _mySqlConnection;
 
-        private readonly string _connectionString = "Server=ragnatech.com.br;Database=ragnat92_estoque_system;Uid=ragnat92_master_user;Pwd=Chinelo00123@;";
-
-        public OnePassRepository(MySqlConnection mySqlConnection) 
+        public OnePassRepository(ILogger<OnePassRepository> logger,
+                                 MySqlConnection mySqlConnection)
         {
+            _logger = logger;
             _mySqlConnection = mySqlConnection;
         }
 
-        public void conectDb() 
+        public async Task conectDb()
         {
             _mySqlConnection.Open();
             Console.WriteLine(_mySqlConnection.State.ToString());
+            _logger.LogInformation($"Log gerado via MS Logging {_mySqlConnection.State.ToString()}");
         }
 
         //MySqlConnection connection = new MySqlConnection(connectionString);

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnePass", "src\OnePass\OnePass.csproj", "{16A3EC76-4838-475A-B18F-651D50FDFBAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePass.Domain", "src\OnePass.Domain\OnePass.Domain.csproj", "{C3B67BE7-4FF8-4406-9397-B3BDE7F1824B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnePass.Domain", "src\OnePass.Domain\OnePass.Domain.csproj", "{C3B67BE7-4FF8-4406-9397-B3BDE7F1824B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePass.Service", "src\OnePass.Service\OnePass.Service.csproj", "{023A759E-51B0-450A-BCDE-64D05F01537B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnePass.Core", "src\OnePass.Service\OnePass.Core.csproj", "{023A759E-51B0-450A-BCDE-64D05F01537B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePass.Repository", "src\OnePass.Repository\OnePass.Repository.csproj", "{A3681060-F1A1-49E4-83A3-4A49DE371694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnePass.Repository", "src\OnePass.Repository\OnePass.Repository.csproj", "{A3681060-F1A1-49E4-83A3-4A49DE371694}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

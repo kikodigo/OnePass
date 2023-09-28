@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1a5e0345-7636-482f-9af7-0e9a98c65027</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnePass.Service\OnePass.Service.csproj" />
+    <ProjectReference Include="..\OnePass.Repository\OnePass.Repository.csproj" />
+    <ProjectReference Include="..\OnePass.Service\OnePass.Core.csproj" />
   </ItemGroup>
 
 </Project>
