@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using OnePass.Domain.Data;
+using OnePass.Domain.Request;
 using OnePass.Repository.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnePass.Repository
 {
@@ -20,9 +22,32 @@ namespace OnePass.Repository
 
         public async Task conectDb()
         {
-            _mySqlConnection.Open();
-            Console.WriteLine(_mySqlConnection.State.ToString());
-            _logger.LogInformation($"Log gerado via MS Logging {_mySqlConnection.State.ToString()}");
+            try
+            {
+                _mySqlConnection.Open();
+                Console.WriteLine(_mySqlConnection.State.ToString());
+
+                _logger.LogInformation($"Log gerado via MS Logging {_mySqlConnection.State.ToString()}");
+            }
+            catch(ArgumentNullException ex)
+            {
+                _logger.LogError($"Alguma informação em branco ou invalido {ex.Message}");
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Não foi possivel conectar no banco {ex.Message}");
+
+                throw;
+            }
+            finally
+            {
+                if(_mySqlConnection.State != System.Data.ConnectionState.Open)
+                {
+                    _mySqlConnection.Close();
+                }
+            }         
         }
 
         public async Task<EstoqueItem> GetItem(int itemId)
@@ -34,6 +59,15 @@ namespace OnePass.Repository
             _mySqlConnection.Close();
 
             return estoqueItem;
+        }
+
+        public async Task<bool> CreateLoginMasterAsync(MasterLoginRequest masterLoginRequest)
+        {
+            _mySqlConnection.Open();
+
+            var result = _mySqlConnection.Query($"INSERT INTO `login_master` (`id`, `user`, `password`, `active`) VALUES (NULL, '{masterLoginRequest.User}', '{masterLoginRequest.Password}', '1');");
+
+            return true;
         }
 
         //MySqlConnection connection = new MySqlConnection(connectionString);
@@ -48,5 +82,7 @@ namespace OnePass.Repository
         //    MessageBox.Show(dt.Rows[0]["item"].ToString());
 
         //    connection.Close();
+
+        //INSERT INTO `login_master` (`id`, `user`, `password`, `active`) VALUES (NULL, 'user', 'bla', '1');
     }
 }

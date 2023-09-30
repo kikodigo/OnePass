@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using OnePass.Core.Services.Interface;
 using OnePass.Domain.Data;
+using OnePass.Domain.Request;
 using OnePass.Repository.Interfaces;
 
 namespace OnePass.Core.Services
@@ -28,6 +29,13 @@ namespace OnePass.Core.Services
             var item = await _onePassRepository.GetItem(idItem);
 
             return item;
+        }
+
+        public async Task<bool> CreateLoginMasterServiceAsync(MasterLoginRequest masterLoginRequest)
+        {
+            var result = await _onePassRepository.CreateLoginMasterAsync(masterLoginRequest);
+
+            return result;
         }
     }
 }

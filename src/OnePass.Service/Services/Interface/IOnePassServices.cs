@@ -1,4 +1,5 @@
 ﻿using OnePass.Domain.Data;
+using OnePass.Domain.Request;
 
 namespace OnePass.Core.Services.Interface
 {
@@ -7,5 +8,8 @@ namespace OnePass.Core.Services.Interface
         Task connectDB();
 
         Task<EstoqueItem> GetItemById(int idItem);
+
+        Task<bool> CreateLoginMasterServiceAsync(MasterLoginRequest masterLoginRequest);
+        
     }
 }
