@@ -19,9 +19,9 @@ namespace OnePass.Core.Services
         }
 
 
-        public async Task connectDB()
+        public async Task<string> connectDB()
         {
-            _onePassRepository.conectDb();
+            return await _onePassRepository.conectDb();
         }
 
         public async Task<EstoqueItem> GetItemById(int idItem)

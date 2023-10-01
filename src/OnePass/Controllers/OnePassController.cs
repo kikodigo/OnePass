@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OnePass.Core.Services.Interface;
 using OnePass.Domain.Request;
-using System.Linq.Expressions;
 
 namespace OnePass.Controllers
 {
@@ -23,7 +22,9 @@ namespace OnePass.Controllers
         {
             try
             {
-                await _onePassServices.connectDB();
+                var result = await _onePassServices.connectDB();
+
+                return Ok(result);
             }
             catch (Exception ex)
             {

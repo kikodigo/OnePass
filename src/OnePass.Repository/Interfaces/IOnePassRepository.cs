@@ -5,7 +5,7 @@ namespace OnePass.Repository.Interfaces
 {
     public interface IOnePassRepository
     {
-        Task conectDb();
+        Task<string> conectDb();
 
         Task<EstoqueItem> GetItem(int itemId);
 

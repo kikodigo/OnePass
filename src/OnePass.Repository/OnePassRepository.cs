@@ -4,7 +4,6 @@ using MySql.Data.MySqlClient;
 using OnePass.Domain.Data;
 using OnePass.Domain.Request;
 using OnePass.Repository.Interfaces;
-using System.ComponentModel.DataAnnotations;
 
 namespace OnePass.Repository
 {
@@ -20,20 +19,17 @@ namespace OnePass.Repository
             _mySqlConnection = mySqlConnection;
         }
 
-        public async Task conectDb()
+        public async Task<string> conectDb()
         {
             try
             {
                 _mySqlConnection.Open();
+
                 Console.WriteLine(_mySqlConnection.State.ToString());
 
                 _logger.LogInformation($"Log gerado via MS Logging {_mySqlConnection.State.ToString()}");
-            }
-            catch(ArgumentNullException ex)
-            {
-                _logger.LogError($"Alguma informação em branco ou invalido {ex.Message}");
 
-                throw;
+                return _mySqlConnection.State.ToString();
             }
             catch (Exception ex)
             {
@@ -43,11 +39,11 @@ namespace OnePass.Repository
             }
             finally
             {
-                if(_mySqlConnection.State != System.Data.ConnectionState.Open)
+                if (_mySqlConnection.State != System.Data.ConnectionState.Open)
                 {
                     _mySqlConnection.Close();
                 }
-            }         
+            }
         }
 
         public async Task<EstoqueItem> GetItem(int itemId)

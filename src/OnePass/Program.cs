@@ -1,5 +1,5 @@
-using OnePass.Repository.IoC;
 using OnePass.Core.IoC;
+using OnePass.Repository.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
